@@ -134,42 +134,75 @@ class Map extends React.Component {
 
     let calc;
 
-    if (map_style !== 'electricity'){
-      // EAD has EAEL baked in to the numbers in road and rail
-      if (riskMetric === 'total') {
-        // EAD subtract 335/365 of EAEL (annual) to get total
-        // assuming 30-day disruption
-        calc = [
-          "-",
-          ["get", "EAD_max"],
-          ["*", 0.917808219178, ["coalesce", ["get", "EAEL"], 0]]];
-      }
+    if (map_style === 'electricity'){
+      // EAD is in US$m, includes EAEL baked in
+      // subtract EAEL (in US$) * 1e-6 to get true EAD in US$m
       if (riskMetric === 'EAD') {
-        // EAD subtract EAEL to get direct only
         calc = [
           "-",
           ["get", "EAD_max"],
-          ["coalesce", ["get", "EAEL"], 0]];
+          [
+            "*",
+            1e-6,
+            ["coalesce", ["get", "EAEL"], 0]
+          ]
+        ];
       }
-      if (riskMetric === 'EAEL') {
-        calc = ["*", 0.0821917808219, ["coalesce", ["get", "EAEL"], 0]];
-      }
-    } else {
-      // EAD does not include EAEL in electricity
       // EAEL here is in annual dollars, so multiply by
       // 1e-6 * (30/365)
       // to get 30-day disruption in US$m
+      if (riskMetric === 'EAEL') {
+        calc = [
+          "*",
+          1e-6 * (30/365),
+          ["coalesce", ["get", "EAEL"], 0]
+        ];
+      }
+      // For total, calculate
+      // EAD subtract 1e-6 * (335/365) of EAEL
+      // to get total assuming 30-day disruption
       if (riskMetric === 'total') {
         calc = [
-          "+",
+          "-",
           ["get", "EAD_max"],
-          ["*", 0.0000000821917808219, ["coalesce", ["get", "EAEL"], 0]]];
+          [
+            "*",
+            1e-6 * (335/365),
+            ["coalesce", ["get", "EAEL"], 0]
+          ]
+        ];
       }
+    } else {
+      // EAD has EAEL baked in to the numbers, all in $USm
+      // EAD subtract EAEL to get direct only
       if (riskMetric === 'EAD') {
-        calc = ["get", "EAD_max"]
+        calc = [
+          "-",
+          ["get", "EAD_max"],
+          ["coalesce", ["get", "EAEL"], 0]
+        ];
       }
+      // EAEL calculate as 30/365 of annual
       if (riskMetric === 'EAEL') {
-        calc = ["*", 0.0000000821917808219, ["coalesce", ["get", "EAEL"], 0]];
+        calc = [
+          "*",
+          (30/365),
+          ["coalesce", ["get", "EAEL"], 0]
+        ];
+      }
+      // For total, calculate
+      // EAD subtract 335/365 of EAEL (annual) to get total
+      // assuming 30-day disruption
+      if (riskMetric === 'total') {
+        calc = [
+          "-",
+          ["get", "EAD_max"],
+          [
+            "*",
+            (335/365),
+            ["coalesce", ["get", "EAEL"], 0]
+          ]
+        ];
       }
     }
 

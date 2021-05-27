@@ -53,7 +53,15 @@
         "line-color": [
           "interpolate-lab",
           ["linear"],
-          ["+", ["get", "EAD_max"], ["*", 0.0000000821917808219, ["coalesce", ["get", "EAEL"], 0]]],
+          [
+            "-",
+            ["get", "EAD_max"],
+            [
+              "*",
+              0.000000917808219178,
+              ["coalesce", ["get", "EAEL"], 0]
+            ]
+          ],
           0,
           ["to-color", "#b2afaa"],
           0.000000001,
