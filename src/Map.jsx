@@ -614,7 +614,7 @@ class Map extends React.Component {
               </small> : null
           }
           {
-            (map_style === 'hazards')?
+            (map_style === 'hazards' || map_style === 'overview')?
             <Fragment>
             <small>Coastal flood depth (m)</small>
             <svg width="270" height="25" version="1.1" xmlns="http://www.w3.org/2000/svg">

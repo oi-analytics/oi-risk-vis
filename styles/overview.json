@@ -11,7 +11,10 @@
     "roads_other": { "type": "vector", "url": "mbtiles://{roads_other}" },
     "rail": { "type": "vector", "url": "mbtiles://{rail}" },
     "boundaries": { "type": "vector", "url": "mbtiles://{boundaries}" },
-    "electricity": { "type": "vector", "url": "mbtiles://{electricity}" }
+    "electricity": { "type": "vector", "url": "mbtiles://{electricity}" },
+    "coastal": { "type": "vector", "url": "mbtiles://{coastal}" },
+    "fluvial": { "type": "vector", "url": "mbtiles://{fluvial}" },
+    "cyclone": { "type": "vector", "url": "mbtiles://{cyclone}" }
   },
   "glyphs": "{fontstack}/{range}.pbf",
   "layers": [
@@ -40,6 +43,72 @@
       "paint": {
         "fill-color": "#e0e0e0",
         "fill-outline-color": "#fff"
+      }
+    },
+    {
+      "id": "cyclone",
+      "type": "fill",
+      "source": "cyclone",
+      "source-layer": "cyclone",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "gust_speed_ms-1"],
+          0,
+          ["to-color", "rgba(255, 255, 255, 0)"],
+          20,
+          ["to-color", "#f9d5cb"],
+          50,
+          ["to-color", "#d44118"]
+        ],
+        "fill-outline-color": "rgba(0,0,0,0)"
+      }
+    },
+    {
+      "id": "fluvial",
+      "type": "circle",
+      "source": "fluvial",
+      "source-layer": "fluvial",
+      "paint": {
+        "circle-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "depth_m"],
+          0,
+          ["to-color", "#58cced"],
+          5,
+          ["to-color", "#072f5f"]
+        ],
+        "circle-radius": [
+          "interpolate", ["exponential", 1.5], ["zoom"],
+          3, 1,
+          10, 5,
+          15, 150
+        ]
+      }
+    },
+    {
+      "id": "coastal",
+      "type": "circle",
+      "source": "coastal",
+      "source-layer": "coastal",
+      "paint": {
+        "circle-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "depth_m"],
+          0,
+          ["to-color", "#9df4b0"],
+          5,
+          ["to-color", "#0b601d"]
+        ],
+        "circle-radius": [
+          "interpolate", ["exponential", 1.5], ["zoom"],
+          3, 1,
+          10, 5,
+          15, 150
+        ]
       }
     },
     {

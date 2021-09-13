@@ -35,13 +35,18 @@ const App = () => {
               {key: 'primary', label: 'Primary Roads', linear: true, color: "#cb3e4e"},
               {key: 'secondary', label: 'Secondary Roads', linear: true, color: "#8471a8"},
               {key: 'roads_other', label: 'Tertiary and Other Roads', linear: true, color: "#b2afaa"},
-
+              {key:'coastal', label: 'Coastal flood depth (m), 100yr', color: "#9df4b0"},
+              {key:'fluvial', label: 'Fluvial flood depth (m), 100yr', color: "#58cced"},
+              {key:'cyclone', label: 'Cyclone gust speed (m/s), 100yr', color: "#f9d5cb"}
             ]}
             tooltipLayerSources={[
               'electricity',
               'rail',
               'roads_main',
-              'roads_other'
+              'roads_other',
+              'coastal',
+              'fluvial',
+              'cyclone'
             ]}
             />
         </Route>
