@@ -60,9 +60,11 @@ const Tooltip = (props) => {
 
     // Hazard details
     if (f.properties.depth_m) {
+      title = "Flood (" + f.source + ", 100yr)";
       detail = "Depth: " + f.properties.depth_m.toFixed(1) + "m";
     }
     if (f.properties["gust_speed_ms-1"]) {
+      title = "Cyclone (100yr)";
       detail = "Gust speed: " + f.properties["gust_speed_ms-1"].toFixed(1) + "ms⁻¹";
     }
 
