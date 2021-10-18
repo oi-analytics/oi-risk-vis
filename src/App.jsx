@@ -28,7 +28,7 @@ const App = () => {
               'roads_other'
             ]}
             dataLayers={[
-              {key: 'electricity', label: 'Power Grid', linear: true, color: "#eca926"},
+              {key: 'electricity', label: 'Power Grid', linear: true, color: "#ffebc4"},
               {key: 'rail', label: 'Railways', linear: true, color: "#444"},
               {key: 'trunk', label: 'Trunk Roads', linear: true, color: "#941339"},
               {key: 'motorway', label: 'Motorways', linear: true, color: "#941339"},
@@ -91,7 +91,7 @@ const App = () => {
               'electricity'
             ]}
             dataLayers={[
-              {key: 'electricity', label: 'Power Grid', linear: true, color: "#eca926"},
+              {key: 'electricity', label: 'Power Grid', linear: true, color: "#ffebc4"},
             ]}
             tooltipLayerSources={[
               'electricity'

@@ -145,7 +145,7 @@
         "line-join": "round"
       },
       "paint": {
-        "line-color": "#eca926",
+        "line-color": "#ffebc4",
         "line-width": {
           "base": 1,
           "stops": [[7, 1], [12, 2], [16, 12]]
