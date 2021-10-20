@@ -14,14 +14,8 @@
       "electricity": {
         "style": "electricity.json"
       },
-      "flood": {
-        "style": "flood.json"
-      },
       "hazards": {
         "style": "hazards.json"
-      },
-      "risk": {
-        "style": "risk.json"
       },
       "roads": {
         "style": "roads.json"
@@ -54,12 +48,6 @@
       },
       "roads_other": {
         "mbtiles": "roads_other.mbtiles"
-      },
-      "vietnam_roads": {
-        "mbtiles": "road_edges.mbtiles"
-      },
-      "flood": {
-        "mbtiles": "flood.mbtiles"
       },
       "coastal": {
         "mbtiles": "coastal.mbtiles"

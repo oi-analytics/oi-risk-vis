@@ -46,18 +46,6 @@ const Tooltip = (props) => {
         : "";
     }
 
-    if (props.map_style === "risk") {
-      max_value = Math.max(
-        ((f.properties.baseline_max_ead || 0) + (f.properties.baseline_max_eael_per_day || 0) *30),
-        ((f.properties.rcp_4p5_max_ead || 0) + (f.properties.rcp_4p5_max_eael_per_day || 0) * 30),
-        ((f.properties.rcp_8p5_max_ead || 0) + (f.properties.rcp_8p5_max_eael_per_day || 0) * 30)
-      );
-
-      detail = (max_value)?
-        " up to " + commas(max_value.toFixed(0)) + " USD expected annual damages plus losses for a 30-day disruption"
-        : "";
-    }
-
     // Hazard details
     if (f.properties.depth_m) {
       title = "Flood (" + f.source + ", 100yr)";

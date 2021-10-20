@@ -36,31 +36,25 @@ const PageIntro = () => (
         <td>Road</td>
         <td>Road links</td>
         <td>Cost of rehabilitation/reinstating damaged assets</td>
-        <td>Rerouting costs* + Macroeconomic losses**</td>
+        <td>Macroeconomic losses*</td>
       </tr>
       <tr>
         <td>Rail</td>
         <td>Railway tracks</td>
         <td>Cost of rehabilitation/reinstating damaged assets</td>
-        <td>Rerouting costs* + Macroeconomic losses**</td>
+        <td>Macroeconomic losses*</td>
       </tr>
       <tr>
         <td>Electricity</td>
         <td>Electricity lines</td>
         <td>Cost of rehabilitation/reinstating damaged assets</td>
-        <td>Macroeconomic losses**</td>
+        <td>Macroeconomic losses*</td>
       </tr>
     </tbody>
   </table>
 
-  <p><small><em>* Rerouting costs are computed for the Vietnam case study only and
-  ignored for other regions. The pages showing results for all of Southeast Asia
-  do not include the rerouting costs for Vietnam.</em></small></p>
-
-  <p><small><em>** Macroeconomic losses are computed based on GDP for all regions in the
-  Southeast Asia analysis. In the Vietnam case study, IO models were used to
-  estimate wider effects of disruption on the macroeconomy - these results are
-  shown only on the Vietnam case study page.</em></small></p>
+  <p><small><em>* Macroeconomic losses are computed based on GDP for all regions in the
+  Southeast Asia analysis.</em></small></p>
 
   <p>The concepts and model results presented here are documented in the study
   report:</p>
@@ -81,12 +75,6 @@ const PageIntro = () => (
 
   <ul><li><a href="https://github.com/oi-analytics/seasia"
   target="blank">github.com/oi-analytics/seasia</a></li></ul>
-
-  <p>The outputs specific to Vietnam visualized here were generated from a model
-  created and documented here:</p>
-
-  <ul><li><a href="https://github.com/oi-analytics/vietnam-transport"
-  target="blank">github.com/oi-analytics/vietnam-transport</a></li></ul>
 
   <h2>Funding support</h2>
 

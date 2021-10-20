@@ -7,7 +7,6 @@ import PositionControl from './PositionControl'
 import Tooltip from './Tooltip'
 import FeatureSidebar from './FeatureSidebar'
 import Help from './Help'
-import FloodControl from './FloodControl'
 import NetworkControl from './NetworkControl';
 import RiskControl from './RiskControl';
 import { commas } from './helpers'
@@ -91,40 +90,12 @@ class Map extends React.Component {
     this.tooltipContainer = undefined
 
     this.onLayerVisChange = this.onLayerVisChange.bind(this)
-    this.setScenario = this.setScenario.bind(this)
-    this.setFloodType = this.setFloodType.bind(this)
-    this.setFloodLevel = this.setFloodLevel.bind(this)
     this.setRiskMetric = this.setRiskMetric.bind(this)
-    this.setMap = this.setMap.bind(this)
     this.toggleHelp = this.toggleHelp.bind(this)
     this.updateBCR = this.updateBCR.bind(this)
     this.networkBaseLayerID = this.networkBaseLayerID.bind(this)
   }
 
-  setScenario(scenario) {
-    this.setState({
-      scenario: scenario
-    })
-    this.setMap(scenario, this.state.floodtype, this.state.floodlevel)
-  }
-
-  setFloodType(floodtype) {
-    this.setState({
-      floodtype: floodtype
-    })
-    this.setMap(this.state.scenario, floodtype, this.state.floodlevel)
-  }
-
-  setFloodLevel(level, value) {
-    let floodlevel = Object.assign({}, this.state.floodlevel);
-    floodlevel[level] = value
-
-    this.setState({
-      floodlevel: floodlevel
-    })
-
-    this.setMap(this.state.scenario, this.state.floodtype, floodlevel)
-  }
 
   setRiskMetric(riskMetric) {
     const map_style = this.props.map_style;
@@ -241,55 +212,9 @@ class Map extends React.Component {
     }
   }
 
-  setMap(scenario, floodtype, floodlevel) {
-
-    var flood_layers = ['1m2m', '2m3m', '3m4m', '4m999m']
-    var flood_layer_colors = {
-      '4m999m': "#072f5f",
-      '3m4m': "#1261a0",
-      '2m3m': "#3895d3",
-      '1m2m': "#58cced"
-    }
-
-    for (var i in flood_layers) {
-      var mapLayer = this.map.getLayer('flood_' + flood_layers[i]);
-
-      if(typeof mapLayer !== 'undefined') {
-        this.map.removeLayer('flood_' + flood_layers[i]);
-      }
-
-      if (floodlevel['_' + flood_layers[i]]) {
-        this.map.addLayer(
-          {
-            "id": "flood_" + flood_layers[i],
-            "type": "fill",
-            "source": "flood",
-            "source-layer": scenario + '_' + floodtype + '_1in1000_' + flood_layers[i],
-            "paint": {
-              "fill-color": flood_layer_colors[flood_layers[i]]
-            }
-          },
-          this.networkBaseLayerID()
-        );
-      }
-    }
-  }
-
   networkBaseLayerID() {
     // insert before (under) road/rail/bridges/air/water/labels
-    let before_layer_id;
-
-    switch (this.props.map_style) {
-      case 'flood':
-        before_layer_id = 'country_labels';
-        break;
-      case 'risk':
-        before_layer_id = 'road_class_6';
-        break;
-      default:
-        before_layer_id = 'country_labels';
-    }
-    return before_layer_id;
+    return 'country_labels';
   }
 
   setTooltip(features) {
@@ -490,7 +415,7 @@ class Map extends React.Component {
 
   render() {
     const { lng, lat, zoom, selectedFeature } = this.state
-    const { map_style, dataLayers, tooltipLayerSources } = this.props
+    const { map_style, dataLayers } = this.props
 
     return (
       <div className={this.props.className}>
@@ -567,23 +492,6 @@ class Map extends React.Component {
                 </g>
               </svg>
               </Fragment>
-              : null
-          }
-          {
-            (map_style === 'risk')?
-              <div>
-                <small>
-                Feature size indicates maximum expected annual damages plus maximum expected annual
-                losses for a 30-day disruption
-                </small>
-                <span className="dot line" style={{"height": "2px", "width": "24px"}}></span>&lt;1 million USD<br/>
-                <span className="dot line" style={{"height": "4px", "width": "24px"}}></span>1-5 million USD<br/>
-                <span className="dot line" style={{"height": "6px", "width": "24px"}}></span>5-10 million USD<br/>
-                <span className="dot line" style={{"height": "8px", "width": "24px"}}></span>&gt;10 million USD<br/>
-                <a href="#help" data-help-topic="vietnam" onClick={this.toggleHelp}>
-                { (this.state.showHelp && this.state.helpTopic === "vietnam")? 'Hide info' : 'More info' }
-                </a>
-              </div>
               : null
           }
           {
@@ -699,20 +607,6 @@ class Map extends React.Component {
               { (this.state.showHelp && this.state.helpTopic === "hazards")? 'Hide info' : 'More info' }
             </a>
             </Fragment>
-            : null
-          }
-          {
-            (tooltipLayerSources.includes('flood'))?
-              <Fragment>
-                <FloodControl
-                  setScenario={this.setScenario}
-                  setFloodType={this.setFloodType}
-                  setFloodLevel={this.setFloodLevel}
-                  />
-                <a href="#help" data-help-topic="flood" onClick={this.toggleHelp}>
-                { (this.state.showHelp && this.state.helpTopic === "flood")? 'Hide info' : 'More info' }
-                </a>
-              </Fragment>
             : null
           }
         </div>

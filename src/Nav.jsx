@@ -42,11 +42,6 @@ const Nav = () => (
           Electricity
         </NavLink>
       </li>
-      <li className="nav-item">
-        <NavLink className="nav-link" to='/risk'>
-          Vietnam Case Study - Risk and Adaptation
-        </NavLink>
-      </li>
     </ul>
   </nav>
 )
