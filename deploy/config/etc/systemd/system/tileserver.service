@@ -4,8 +4,8 @@ After=network.target
 
 [Service]
 Type=simple
-User=raghav
-Group=raghav
+User=ubuntu
+Group=ubuntu
 WorkingDirectory=/var/www/tileserver
 ExecStart=/usr/local/lib/node/node-v14.15.1/bin/tileserver-gl-light
 Restart=on-failure

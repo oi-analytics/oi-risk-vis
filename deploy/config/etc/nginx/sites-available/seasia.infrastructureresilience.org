@@ -32,13 +32,9 @@ server {
 	# Add index.php to the list if you are using PHP
 	index index.html
 
-	server_name tool.oi-analytics.com;
+	server_name seasia.infrastructureresilience.org;
 
 	location / {
-		# basic authentication - use htpasswd to add users
-		auth_basic "Access restricted";
-		auth_basic_user_file /etc/nginx/.htpasswd;
-
 		# First attempt to serve request as file, then
 		# as directory, then fall back to index.
 		try_files $uri $uri/ /index.html;
@@ -51,10 +47,6 @@ server {
 	}
 
 	location /static {
-		# basic authentication - use htpasswd to add users
-		auth_basic "Access restricted";
-		auth_basic_user_file /etc/nginx/.htpasswd;
-
 		# First attempt to serve request as file, then
 		# as directory, then fall back to index.
 		try_files $uri =404;
@@ -64,10 +56,6 @@ server {
 	}
 
 	location /styles {
-		# basic authentication - use htpasswd to add users
-		auth_basic "Access restricted";
-		auth_basic_user_file /etc/nginx/.htpasswd;
-
 		proxy_pass http://tileserver;
 		proxy_set_header Host $host;
 		proxy_set_header X-Real-IP $remote_addr;
@@ -76,10 +64,6 @@ server {
 	}
 
 	location /data {
-		# basic authentication - use htpasswd to add users
-		auth_basic "Access restricted";
-		auth_basic_user_file /etc/nginx/.htpasswd;
-
 		proxy_pass http://tileserver;
 		proxy_set_header Host $host;
 		proxy_set_header X-Real-IP $remote_addr;
@@ -88,10 +72,6 @@ server {
 	}
 
 	location /fonts {
-		# basic authentication - use htpasswd to add users
-		auth_basic "Access restricted";
-		auth_basic_user_file /etc/nginx/.htpasswd;
-
 		proxy_pass http://tileserver;
 		proxy_set_header Host $host;
 		proxy_set_header X-Real-IP $remote_addr;
@@ -102,21 +82,21 @@ server {
 
 	listen [::]:443 ssl ipv6only=on; # managed by Certbot
 	listen 443 ssl; # managed by Certbot
-	ssl_certificate /etc/letsencrypt/live/tool.oi-analytics.com/fullchain.pem; # managed by Certbot
-	ssl_certificate_key /etc/letsencrypt/live/tool.oi-analytics.com/privkey.pem; # managed by Certbot
+	ssl_certificate /etc/letsencrypt/live/seasia.infrastructureresilience.org/fullchain.pem; # managed by Certbot
+	ssl_certificate_key /etc/letsencrypt/live/seasia.infrastructureresilience.org/privkey.pem; # managed by Certbot
 	include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
 	ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 }
 
 # Redirect from HTTP to HTTPS
 server {
-	if ($host = tool.oi-analytics.com) {
+	if ($host = seasia.infrastructureresilience.org) {
 		return 301 https://$host$request_uri;
 	} # managed by Certbot
 
 
 	listen 80 ;
 	listen [::]:80 ;
-	server_name tool.oi-analytics.com;
+	server_name seasia.infrastructureresilience.org;
 	return 404; # managed by Certbot
 }

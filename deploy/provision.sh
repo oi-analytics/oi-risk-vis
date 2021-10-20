@@ -11,10 +11,10 @@ sudo apt-get install nginx
 
 # Set up SSL
 sudo apt-get install software-properties-common build-essential
-sudo add-apt-repository universe
-sudo add-apt-repository ppa:certbot/certbot
-sudo apt-get update
-sudo apt-get install certbot python-certbot-nginx
+sudo snap install core
+sudo snap refresh core
+sudo snap install --classic certbot
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
 sudo certbot certonly --nginx
 
 # Install node
@@ -31,6 +31,13 @@ sudo mv /usr/local/lib/node/node-$NODE_VERSION-$DISTRO /usr/local/lib/node/node-
 sudo ln -s /usr/local/lib/node/node-$NODE_VERSION/bin/node /usr/bin/node
 sudo ln -s /usr/local/lib/node/node-$NODE_VERSION/bin/npm /usr/bin/npm
 sudo ln -s /usr/local/lib/node/node-$NODE_VERSION/bin/npx /usr/bin/npx
+
+sudo chown :ubuntu /usr/local/lib/node/node-v14.15.1/lib/node_modules/
+sudo chmod 775 /usr/local/lib/node/node-v14.15.1/lib/node_modules/
+sudo chown :ubuntu /usr/local/lib/node/node-v14.15.1/bin/
+sudo chmod 775 /usr/local/lib/node/node-v14.15.1/bin/
+
+npm config set python /usr/bin/python3
 
 # Install tileserver
 npm i -g tileserver-gl-light
