@@ -22,10 +22,7 @@ Install [terraform](https://www.terraform.io/) then run:
   terraform plan  # to see what actions will be taken in detail
   terraform apply # rerun after any change to main.tf
 
-npx browserslist@latest --update-db
-
-
-`provision.sh` contains installation instructions for an Ubuntu 18.04 server to
+`provision.sh` contains installation instructions for an Ubuntu 20.04 server to
 install NGINX, setup SSL using CertBot, install node and tileserver-gl-light.
 
 > TODO: get terraform to run `provision.sh` and the config setup below.
