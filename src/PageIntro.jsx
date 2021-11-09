@@ -84,6 +84,8 @@ const PageIntro = () => (
   Government of Japan and managed by the Global Facility for Disaster Reduction
   and Recovery (GFDRR) through the Tokyo Disaster Risk Management Hub.</p>
 
+  <p><img src="logo-drfip.png" alt="Disaster Risk Financing and Insurance Program, supported by World Bank Group"/></p>
+
   </article>
 );
 
