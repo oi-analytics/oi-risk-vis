@@ -169,6 +169,12 @@ Build the application:
 The `dist` folder should then have everything needed for a static site
 deployment, e.g. behind a web server, or from an object store.
 
+For example, configure an AWS S3 bucket to host a static website
+([docs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/HostingWebsiteOnS3Setup.html)),
+then upload `dist` to the bucket:
+
+    aws s3 cp --recursive dist s3://bucket-name
+
 ## Acknowledgments
 
 This tool was originally developed by Oxford Infrastructure Analytics as part of
