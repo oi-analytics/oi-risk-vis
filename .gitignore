@@ -5,19 +5,14 @@ incoming_data/
 intermediate_data/
 *.zip
 *.bak
+bak/
 public/*.csv
 public/**/*.csv
 
 # local config
-package-lock.json
 TODO
 NOTES
 
 # build
 build/
-
-# deploy
-.terraform
-*.tfstate
-*.tfstate.backup
-.terraform.lock.hcl
+dist/

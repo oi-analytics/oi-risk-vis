@@ -1,5 +1,5 @@
 #
-# Convert JSON Roads dump to files per road type, for useful layers as mbtiles
+# Convert JSON Roads dump to files per road type, for useful layers as pmtiles
 #
 set -e
 set -x
