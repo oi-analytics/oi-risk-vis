@@ -1,13 +1,11 @@
 # data folders
 node_modules/
-data
-incoming_data/
-intermediate_data/
-*.zip
 *.bak
-bak/
+
+# public data - could commit but medium sized
 public/*.csv
 public/**/*.csv
+public/**/*.pmtiles
 
 # local config
 TODO
