@@ -1,5 +1,5 @@
 #
-# Convert flood tiffs to CSV for mbtiles generation
+# Convert flood tiffs to CSV for pmtiles generation
 #
 pushd intermediate_data/Flooding
   # convert to points space-separated text file (x, y, value columns, no header)
