@@ -283,9 +283,11 @@ function MapControl({
               </g>
             </g>
           </svg>
-          <a href="#help" data-help-topic="hazards" onClick={toggleHelp}>
-            {showHelp && helpTopic === "hazards" ? "Hide info" : "More info"}
-          </a>
+          <div>
+            <a href="#help" data-help-topic="hazards" onClick={toggleHelp}>
+              {showHelp && helpTopic === "hazards" ? "Hide info" : "More info"}
+            </a>
+          </div>
         </>
       ) : null}
     </div>
