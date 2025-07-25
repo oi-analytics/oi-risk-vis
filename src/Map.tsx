@@ -14,7 +14,12 @@ import {
   get_calculated_paint_property,
   processFeature,
 } from "./features";
-import { DataLayerSpec, MapStyleName, MapSourceName } from "./types";
+import {
+  DataLayerSpec,
+  MapStyleName,
+  MapSourceName,
+  RiskMetric,
+} from "./types";
 
 // This only needs to run once in the app lifecycle
 // PMTiles docs suggest using React.useEffect, which
@@ -62,7 +67,6 @@ class Map extends Component<MapProps, any, any> {
     this.map = undefined;
     this.mapContainer = React.createRef();
     this.tooltipContainer = undefined;
-    this.map_style = props.map_style;
 
     this.onLayerVisChange = this.onLayerVisChange.bind(this);
     this.setRiskMetric = this.setRiskMetric.bind(this);
@@ -71,20 +75,20 @@ class Map extends Component<MapProps, any, any> {
   }
 
   setRiskMetric(riskMetric) {
-    const map_style = this.props.mapStyle;
+    const mapStyle = this.props.mapStyle;
     this.setState({
       riskMetric: riskMetric,
     });
-    const paint_color = get_calculated_paint_property(map_style, riskMetric);
-    if (map_style === "roads") {
+    const paint_color = get_calculated_paint_property(mapStyle, riskMetric);
+    if (mapStyle === "roads") {
       this.map.setPaintProperty("trunk", "line-color", paint_color);
       this.map.setPaintProperty("primary", "line-color", paint_color);
       this.map.setPaintProperty("secondary", "line-color", paint_color);
       this.map.setPaintProperty("roads_other", "line-color", paint_color);
       this.map.setPaintProperty("motorway", "line-color", paint_color);
     }
-    if (map_style === "rail" || map_style === "electricity") {
-      this.map.setPaintProperty(map_style, "line-color", paint_color);
+    if (mapStyle === "rail" || mapStyle === "electricity") {
+      this.map.setPaintProperty(mapStyle, "line-color", paint_color);
     }
   }
 
@@ -92,7 +96,7 @@ class Map extends Component<MapProps, any, any> {
     this.tooltipRoot.render(
       createElement(Tooltip, {
         features: features,
-        map_style: this.map_style,
+        mapStyle: this.props.mapStyle,
       })
     );
   }
@@ -120,7 +124,64 @@ class Map extends Component<MapProps, any, any> {
     prevState: Readonly<any>,
     snapshot?: any
   ): void {
-    this.map.setStyle(this.props.styleSpec);
+    if (prevProps.styleSpec !== this.props.styleSpec) {
+      const mapStyle = this.props.mapStyle;
+      const riskMetric = this.state.riskMetric as RiskMetric;
+
+      const paintColor = get_calculated_paint_property(mapStyle, riskMetric);
+
+      this.map.setStyle(this.props.styleSpec, {
+        transformStyle: (previousStyle, nextStyle) => ({
+          ...nextStyle,
+          layers: nextStyle.layers.map((layer) => {
+            // match visibility
+            if (
+              layer.id === "coastal" ||
+              layer.id === "fluvial" ||
+              layer.id === "cyclone" ||
+              layer.id === "trunk" ||
+              layer.id === "motorway" ||
+              layer.id === "primary" ||
+              layer.id === "secondary" ||
+              layer.id === "roads_other" ||
+              layer.id === "rail" ||
+              layer.id === "electricity"
+            ) {
+              for (let prevLayer of previousStyle.layers) {
+                if (prevLayer.id === layer.id) {
+                  // ensure layout exists
+                  layer.layout = layer.layout ? layer.layout : {};
+                  // set visibility
+                  layer.layout.visibility =
+                    prevLayer.layout?.visibility === "none"
+                      ? "none"
+                      : "visible";
+                }
+              }
+            }
+            // match paint style to current riskMetric (not default from layer styleSpec)
+            if (mapStyle === "roads") {
+              if (
+                layer.id === "trunk" ||
+                layer.id === "primary" ||
+                layer.id === "secondary" ||
+                layer.id === "roads_other" ||
+                layer.id === "motorway"
+              ) {
+                layer.paint["line-color"] = paintColor;
+              }
+            }
+
+            if (mapStyle === "rail" || mapStyle === "electricity") {
+              if (layer.id === mapStyle) {
+                layer.paint["line-color"] = paintColor;
+              }
+            }
+            return layer;
+          }),
+        }),
+      });
+    }
   }
 
   componentDidMount() {
