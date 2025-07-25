@@ -31,10 +31,10 @@ function Tooltip(props) {
     let detail;
 
     if (
-      props.map_style === "roads" ||
-      props.map_style === "rail" ||
-      props.map_style === "electricity" ||
-      props.map_style === "overview"
+      props.mapStyle === "roads" ||
+      props.mapStyle === "rail" ||
+      props.mapStyle === "electricity" ||
+      props.mapStyle === "overview"
     ) {
       title = "ID: " + (f.properties.osm_id || f.properties.link);
 
@@ -51,7 +51,7 @@ function Tooltip(props) {
       }
     }
 
-    if (props.map_style === "impact") {
+    if (props.mapStyle === "impact") {
       max_value = f.properties.max_econ_impact;
 
       detail =
@@ -76,7 +76,7 @@ function Tooltip(props) {
     }
 
     // Regions
-    if (props.map_style === "regions") {
+    if (props.mapStyle === "regions") {
       title = "Region";
     }
     if (f.properties.NAME_1 && f.properties.NAME_0) {
