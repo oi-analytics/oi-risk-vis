@@ -50,7 +50,7 @@ function App() {
                 mapStyle={MapStyleName.OVERVIEW}
                 mapLocation={mapLocation}
                 setMapLocation={setMapLocation}
-                styleSpec={"styles/overview.json"}
+                styleSpec={"/styles/overview.json"}
                 dataSources={[
                   MapSourceName.ELECTRICITY,
                   MapSourceName.RAIL,
@@ -135,7 +135,7 @@ function App() {
             path="hazards"
             element={
               <Map
-                styleSpec={"styles/hazards.json"}
+                styleSpec={"/styles/hazards.json"}
                 mapLocation={mapLocation}
                 setMapLocation={setMapLocation}
                 mapStyle={MapStyleName.HAZARDS}
@@ -172,7 +172,7 @@ function App() {
             path="roads"
             element={
               <Map
-                styleSpec={"styles/roads.json"}
+                styleSpec={"/styles/roads.json"}
                 mapStyle={MapStyleName.ROADS}
                 mapLocation={mapLocation}
                 setMapLocation={setMapLocation}
@@ -224,7 +224,7 @@ function App() {
             element={
               <Map
                 mapStyle={MapStyleName.RAIL}
-                styleSpec={"styles/rail.json"}
+                styleSpec={"/styles/rail.json"}
                 mapLocation={mapLocation}
                 setMapLocation={setMapLocation}
                 dataSources={[MapSourceName.RAIL]}
@@ -245,7 +245,7 @@ function App() {
             element={
               <Map
                 mapStyle={MapStyleName.ELECTRICITY}
-                styleSpec={"styles/electricity.json"}
+                styleSpec={"/styles/electricity.json"}
                 mapLocation={mapLocation}
                 setMapLocation={setMapLocation}
                 dataSources={[MapSourceName.ELECTRICITY]}
