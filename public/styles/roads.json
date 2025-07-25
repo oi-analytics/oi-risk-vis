@@ -14,18 +14,18 @@
   "sources": {
     "boundaries": {
       "type": "vector",
-      "url": "pmtiles://tiles/boundaries.pmtiles"
+      "url": "pmtiles:///tiles/boundaries.pmtiles"
     },
     "roads_main": {
       "type": "vector",
-      "url": "pmtiles://tiles/roads_main.pmtiles"
+      "url": "pmtiles:///tiles/roads_main.pmtiles"
     },
     "roads_other": {
       "type": "vector",
-      "url": "pmtiles://tiles/roads_other.pmtiles"
+      "url": "pmtiles:///tiles/roads_other.pmtiles"
     }
   },
-  "glyphs": "fonts/{fontstack}/{range}.pbf",
+  "glyphs": "/fonts/{fontstack}/{range}.pbf",
   "layers": [
     {
       "id": "background",

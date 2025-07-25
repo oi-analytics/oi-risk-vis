@@ -14,38 +14,38 @@
   "sources": {
     "boundaries": {
       "type": "vector",
-      "url": "pmtiles://tiles/boundaries.pmtiles"
+      "url": "pmtiles:///tiles/boundaries.pmtiles"
     },
     "roads_main": {
       "type": "vector",
-      "url": "pmtiles://tiles/roads_main.pmtiles"
+      "url": "pmtiles:///tiles/roads_main.pmtiles"
     },
     "roads_other": {
       "type": "vector",
-      "url": "pmtiles://tiles/roads_other.pmtiles"
+      "url": "pmtiles:///tiles/roads_other.pmtiles"
     },
     "rail": {
       "type": "vector",
-      "url": "pmtiles://tiles/rail.pmtiles"
+      "url": "pmtiles:///tiles/rail.pmtiles"
     },
     "electricity": {
       "type": "vector",
-      "url": "pmtiles://tiles/electricity.pmtiles"
+      "url": "pmtiles:///tiles/electricity.pmtiles"
     },
     "coastal": {
       "type": "vector",
-      "url": "pmtiles://tiles/coastal.pmtiles"
+      "url": "pmtiles:///tiles/coastal.pmtiles"
     },
     "fluvial": {
       "type": "vector",
-      "url": "pmtiles://tiles/fluvial.pmtiles"
+      "url": "pmtiles:///tiles/fluvial.pmtiles"
     },
     "cyclone": {
       "type": "vector",
-      "url": "pmtiles://tiles/cyclone.pmtiles"
+      "url": "pmtiles:///tiles/cyclone.pmtiles"
     }
   },
-  "glyphs": "fonts/{fontstack}/{range}.pbf",
+  "glyphs": "/fonts/{fontstack}/{range}.pbf",
   "layers": [
     {
       "id": "background",

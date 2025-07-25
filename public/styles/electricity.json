@@ -14,14 +14,14 @@
   "sources": {
     "boundaries": {
       "type": "vector",
-      "url": "pmtiles://tiles/boundaries.pmtiles"
+      "url": "pmtiles:///tiles/boundaries.pmtiles"
     },
     "electricity": {
       "type": "vector",
-      "url": "pmtiles://tiles/electricity.pmtiles"
+      "url": "pmtiles:///tiles/electricity.pmtiles"
     }
   },
-  "glyphs": "fonts/{fontstack}/{range}.pbf",
+  "glyphs": "/fonts/{fontstack}/{range}.pbf",
   "layers": [
     {
       "id": "background",
