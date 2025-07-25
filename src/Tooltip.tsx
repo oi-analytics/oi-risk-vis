@@ -28,13 +28,14 @@ function Tooltip(props) {
       : "";
 
     let max_value;
-    let detail;
+    let detail = "";
 
     if (
-      props.mapStyle === "roads" ||
-      props.mapStyle === "rail" ||
-      props.mapStyle === "electricity" ||
-      props.mapStyle === "overview"
+      (props.mapStyle === "roads" ||
+        props.mapStyle === "rail" ||
+        props.mapStyle === "electricity" ||
+        props.mapStyle === "overview") &&
+      (f.properties.osm_id || f.properties.link)
     ) {
       title = "ID: " + (f.properties.osm_id || f.properties.link);
 
@@ -84,14 +85,14 @@ function Tooltip(props) {
     }
 
     if (
-      !entries[f.sourceLayer] ||
-      entries[f.sourceLayer].max_value < max_value
+      detail !== "" &&
+      (!entries[f.sourceLayer] || entries[f.sourceLayer].max_value < max_value)
     ) {
       entries[f.sourceLayer] = { title, subtitle, max_value, detail };
     }
   }
 
-  return props.features.length ? (
+  return Object.values(entries).length ? (
     <div className="tooltip-wrap">
       <div className="tooltip-body">
         {Object.values(entries).map((entry, i) => {
