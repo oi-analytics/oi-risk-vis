@@ -76,6 +76,7 @@ article .alert {
   left: 0;
   right: 0;
   bottom: 0;
+  overflow: hidden;
 }
 .map.mapboxgl-map {
   position: absolute;
@@ -92,12 +93,12 @@ article .alert {
   border-radius: 2px;
   padding: 5px;
   max-height: calc(100vh - 7rem);
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .custom-map-control.top-left {
   top: 10px;
   left: 10px;
-  max-width: 18rem;
+  max-width: 20rem;
 }
 .custom-map-control small {
   display: block;
