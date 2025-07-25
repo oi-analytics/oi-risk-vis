@@ -55,7 +55,6 @@
       "type": "line",
       "source": "rail",
       "source-layer": "rail",
-      "minzoom": 3,
       "layout": {
         "line-cap": "round",
         "line-join": "round"

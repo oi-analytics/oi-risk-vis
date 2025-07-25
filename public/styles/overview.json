@@ -155,7 +155,6 @@
       "type": "line",
       "source": "roads_other",
       "source-layer": "other",
-      "minzoom": 3,
       "layout": {
         "line-cap": "round",
         "line-join": "round"
@@ -186,7 +185,6 @@
       "type": "line",
       "source": "electricity",
       "source-layer": "electricity",
-      "minzoom": 3,
       "layout": {
         "line-cap": "round",
         "line-join": "round"
@@ -201,7 +199,6 @@
       "type": "line",
       "source": "rail",
       "source-layer": "rail",
-      "minzoom": 3,
       "layout": {
         "line-cap": "round",
         "line-join": "round"
@@ -226,7 +223,6 @@
       "type": "line",
       "source": "roads_main",
       "source-layer": "secondary",
-      "minzoom": 3,
       "layout": {
         "line-cap": "round",
         "line-join": "round"
@@ -241,7 +237,6 @@
       "type": "line",
       "source": "roads_main",
       "source-layer": "primary",
-      "minzoom": 3,
       "layout": {
         "line-cap": "round",
         "line-join": "round"
@@ -256,7 +251,6 @@
       "type": "line",
       "source": "roads_main",
       "source-layer": "motorway",
-      "minzoom": 3,
       "layout": {
         "line-cap": "round",
         "line-join": "round"
@@ -271,7 +265,6 @@
       "type": "line",
       "source": "roads_main",
       "source-layer": "trunk",
-      "minzoom": 3,
       "layout": {
         "line-cap": "round",
         "line-join": "round"
