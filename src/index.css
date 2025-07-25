@@ -76,14 +76,14 @@ article .alert {
   left: 0;
   right: 0;
   bottom: 0;
-  overflow: hidden;
 }
 .map.mapboxgl-map {
   position: absolute;
-  top: 0;
+  top: 3rem;
   bottom: 0;
   left: 0;
   right: 0;
+  overflow: hidden;
 }
 .custom-map-control {
   position: absolute;
