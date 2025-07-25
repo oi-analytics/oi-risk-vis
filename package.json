@@ -14,7 +14,6 @@
     "pmtiles": "^4.3.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-map-gl": "^8.0.4",
     "react-router": "^7.6.3",
     "vega-embed": "^7.0.2"
   },
