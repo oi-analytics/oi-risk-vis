@@ -24,7 +24,7 @@ import {
 // This only needs to run once in the app lifecycle
 // PMTiles docs suggest using React.useEffect, which
 // only works in function components
-let protocol = new Protocol();
+const protocol = new Protocol();
 maplibregl.addProtocol("pmtiles", protocol.tile);
 
 type MapProps = {
@@ -147,7 +147,7 @@ class Map extends Component<MapProps, any, any> {
               layer.id === "rail" ||
               layer.id === "electricity"
             ) {
-              for (let prevLayer of previousStyle.layers) {
+              for (const prevLayer of previousStyle.layers) {
                 if (prevLayer.id === layer.id) {
                   // ensure layout exists
                   layer.layout = layer.layout ? layer.layout : {};

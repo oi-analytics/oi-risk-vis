@@ -23,7 +23,7 @@ function Tooltip(props) {
         .replace("1in", "1/")
         .replace("edges", "")
     );
-    let subtitle = f.properties.road_type
+    const subtitle = f.properties.road_type
       ? "(" + f.properties.road_type + ")"
       : "";
 
